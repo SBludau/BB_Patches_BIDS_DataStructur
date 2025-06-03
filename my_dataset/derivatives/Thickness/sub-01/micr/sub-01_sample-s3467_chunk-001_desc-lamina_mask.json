@@ -1,0 +1,53 @@
+{
+  "Description": "Manual annotation of cortical laminae for this patch, created by neuroanatomical experts.",
+  "FileFormat": "PNG",
+  "DataType": "uint8",
+  "BitDepth": 8,
+  "CoordinateSpace": "pixel",
+  "LaminaLabels": {
+    "1": {
+      "Label": "Layer I",
+      "MeanThickness_um": 95.2,
+      "ThicknessStd_um": 8.3
+    },
+    "2": {
+      "Label": "Layer II",
+      "MeanThickness_um": 102.7,
+      "ThicknessStd_um": 7.9
+    },
+    "3": {
+      "Label": "Layer III",
+      "MeanThickness_um": 134.1,
+      "ThicknessStd_um": 9.4
+    },
+    "4": {
+      "Label": "Layer IV",
+      "MeanThickness_um": 84.7,
+      "ThicknessStd_um": 6.2
+    },
+    "5": {
+      "Label": "Layer V",
+      "MeanThickness_um": 128.9,
+      "ThicknessStd_um": 10.1
+    },
+    "6": {
+      "Label": "Layer VI",
+      "MeanThickness_um": 145.0,
+      "ThicknessStd_um": 12.3
+    }
+  },
+  "Units": {
+    "MeanThickness_um": "um",
+    "ThicknessStd_um": "um"
+  },
+  "AnnotationMethod": {
+    "Type": "manual",
+    "Annotators": "Trained neuroanatomists",
+    "Validation": "4-eye principle (second independent review)",
+    "Software": {
+      "Name": "MicroDraw",
+      "Version": "1.0",
+      "URL": "https://microdraw.pasteur.fr"
+    }
+  }
+}

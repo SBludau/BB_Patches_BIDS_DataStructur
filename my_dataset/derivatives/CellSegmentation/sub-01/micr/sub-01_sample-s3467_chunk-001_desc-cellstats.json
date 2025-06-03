@@ -1,0 +1,29 @@
+{
+  "Description": "Layer-wise cell statistics (count and area metrics) for this patch, generated from CPN segmentation.",
+  "TableColumns": {
+    "layer": {
+      "Description": "Cortical layer (I through VI)",
+      "Levels": ["I", "II", "III", "IV", "V", "VI"]
+    },
+    "cell_count": {
+      "Description": "Number of detected cells in this layer",
+      "Units": "count",
+      "DataType": "integer"
+    },
+    "cell_size_mean_um2": {
+      "Description": "Mean cell area in square micrometers",
+      "Units": "um2",
+      "DataType": "float"
+    },
+    "cell_size_std_um2": {
+      "Description": "Standard deviation of cell area in square micrometers",
+      "Units": "um2",
+      "DataType": "float"
+    }
+  },
+  "GeneratedBy": {
+    "Name": "CPN CellSeg v1.0",
+    "CodeURL": "https://github.com/FZJ-INM1-BDA/celldetection",
+    "Version": "1.0"
+  }
+}

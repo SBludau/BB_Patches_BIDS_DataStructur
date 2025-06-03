@@ -1,0 +1,21 @@
+{
+  "Name": "Layer-specific distributions of segmented cells in different cytoarchitectonic regions of BigBrain iso cortex",
+  "BIDSVersion": "1.9.0",
+  "License": "CC-BY-4.0",
+  "Authors": [
+    "Timo Dickscheid",
+    "Sebastian Bludau",
+    "Christian Schiffer",
+    "Anna Steffens",
+    "Eric Upschulte",
+    "Katrin Amunts"
+  ],
+  "HowToAcknowledge": "Please cite our forthcoming publication (placeholder for own publication).",
+  "ReferencesAndLinks": [
+    "https://bigbrainproject.org/",
+    "https://julich-brain-atlas.de/",
+    "https://www.sciencedirect.com/science/article/pii/S136184152200024X",
+    "https://github.com/FZJ-INM1-BDA/celldetection",
+    "https://siibra.readthedocs.io/"
+  ]
+}

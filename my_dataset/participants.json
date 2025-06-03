@@ -1,0 +1,14 @@
+{
+  "participant_id": {
+    "Description": "BIDS participant label, e.g., sub-01"
+  },
+  "species": {
+    "Description": "Species of the organism, here Homo sapiens"
+  },
+  "sex": {
+    "Description": "Biological sex of the participant"
+  },
+  "age": {
+    "Description": "Age in years (if known)"
+  }
+}

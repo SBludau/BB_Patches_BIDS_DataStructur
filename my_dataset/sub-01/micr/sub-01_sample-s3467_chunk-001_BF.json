@@ -1,0 +1,27 @@
+{
+  "Manufacturer": "Huron Digital Pathology",
+  "ManufacturersModelName": "TissueScope LE120 Slide Scanner",
+  "InstitutionName": "Forschungszentrum Jülich",
+  "PixelSize": [1.0, 1.0],
+  "PixelSizeUnits": "um",
+  "Magnification": 10,
+  "ImageAcquisitionProtocol": "https://github.com/FZJ-INM1-BDA/PatchExtractor",
+  "OtherAcquisitionParameters": "NumericalAperture=0.75; BitDepth=8",
+  "BodyPart": "BRAIN",
+  "BodyPartDetails": "iso cortex",
+  "BodyPartDetailsOntology": "https://www.ebi.ac.uk/ols/ontologies/uberon",
+  "SampleEnvironment": "ex vivo",
+  "SampleEmbedding": "Paraffin",
+  "SampleFixation": "To be confirmed",
+  "SampleStaining": ["Merker silver staining"],
+  "SliceThickness": 20,
+  "SampleExtractionProtocol": "To be confirmed",
+  "SampleExtractionInstitution": "Forschungszentrum Jülich",
+  "ChunkTransformationMatrix": [
+    [1, 0, 0, 0],
+    [0, 1, 0, 0],
+    [0, 0, 1, 0],
+    [0, 0, 0, 1]
+  ],
+  "ChunkTransformationMatrixAxis": ["X", "Y", "Z"]
+}

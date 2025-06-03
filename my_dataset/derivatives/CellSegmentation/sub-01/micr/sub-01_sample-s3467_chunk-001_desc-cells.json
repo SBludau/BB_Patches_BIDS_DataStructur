@@ -1,0 +1,33 @@
+{
+  "Description": "Single-cell information (position, area, layer membership) for all detected cells in this patch.",
+  "TableColumns": {
+    "cell_id": {
+      "Description": "Unique cell identifier",
+      "DataType": "integer"
+    },
+    "x_um": {
+      "Description": "X-coordinate of the cell centroid in micrometers relative to the patch",
+      "Units": "um",
+      "DataType": "float"
+    },
+    "y_um": {
+      "Description": "Y-coordinate of the cell centroid in micrometers relative to the patch",
+      "Units": "um",
+      "DataType": "float"
+    },
+    "area_um2": {
+      "Description": "Cell area in square micrometers",
+      "Units": "um2",
+      "DataType": "float"
+    },
+    "layer": {
+      "Description": "Cortical layer in which the cell resides (I–VI)",
+      "Levels": ["I", "II", "III", "IV", "V", "VI"]
+    }
+  },
+  "GeneratedBy": {
+    "Name": "CPN CellSeg v1.0",
+    "CodeURL": "https://github.com/FZJ-INM1-BDA/celldetection",
+    "Version": "1.0"
+  }
+}

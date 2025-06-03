@@ -1,0 +1,17 @@
+{
+  "Name": "Lamina Thickness Derivative for BigBrain Microscopy Data",
+  "BIDSVersion": "1.9.0",
+  "PipelineDescription": {
+    "Name": "ManualLaminaAnnotation",
+    "Version": "1.0",
+    "CodeURL": "https://microdraw.pasteur.fr",
+    "Description": "Manual annotation of cortical laminae and calculation of thickness statistics."
+  },
+  "HowToAcknowledge": "Amunts et al., BigBrain 2013",
+  "SourceDatasets": [
+    {
+      "Name": "Layer-specific distributions of BigBrain iso cortex (Raw)",
+      "URL": "https://bigbrainproject.org/"
+    }
+  ]
+}

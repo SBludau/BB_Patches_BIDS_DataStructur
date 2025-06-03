@@ -1,0 +1,11 @@
+{
+  "sample_id": {
+    "Description": "ID of the sample (matches sample-<label> in filename)"
+  },
+  "participant_id": {
+    "Description": "ID of the participant (matches sub-<label> in filename)"
+  },
+  "sample_type": {
+    "Description": "Type of biological material, e.g., 'brain tissue'"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "Name": "Cell-Segmentation-Pipeline for BigBrain Microscopy Data",
+  "BIDSVersion": "1.9.0",
+  "PipelineDescription": {
+    "Name": "CPN CellSeg",
+    "Version": "1.0",
+    "CodeURL": "https://github.com/FZJ-INM1-BDA/celldetection",
+    "Description": "Automatic cell segmentation using Contour Proposal Networks (CPN) and subsequent layer-specific cell statistics."
+  },
+  "HowToAcknowledge": "Upschulte et al., MedIA 2022 – Cell Segmentation via CPN",
+  "SourceDatasets": [
+    {
+      "Name": "Layer-specific distributions of BigBrain iso cortex (Raw)",
+      "URL": "https://bigbrainproject.org/"
+    }
+  ]
+}
