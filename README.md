@@ -1,3 +1,23 @@
+## BIDS Validator v1.15.1-dev.0
+
+my_dataset
+
+Summary
+
+8 Files, 13.17KB
+1 - Subject
+1 - Session
+
+Available Tasks
+
+Available Modalities
+
+Microscopy
+
+## This is a valid BIDS dataset!
+
+Some Warnings about missing keys. Easy to include!
+
 
 # 📊 Data Descriptor: Layer-specific distributions of segmented cells in different cytoarchitectonic regions of BigBrain iso cortex
 
