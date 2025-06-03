@@ -5,7 +5,7 @@
 
 This dataset contains high-resolution histological image patches from the BigBrain project. Each patch represents a section of human cortex stained with the Merker method and manually annotated for cortical laminae. Cells were segmented automatically using a contour-based deep learning model.
 
-All data follows the BIDS (Brain Imaging Data Structure) standard with the Microscopy extension (BEP031).
+Planed to follow BIDS (Brain Imaging Data Structure) standard with the Microscopy extension (BEP031).
 
 ---
 
@@ -13,19 +13,36 @@ All data follows the BIDS (Brain Imaging Data Structure) standard with the Micro
 
 ```
 my_dataset/
-├── dataset_description.json         # Metadata and software references
-├── participants.tsv                 # Information about the BigBrain donor (sub-01)
-├── samples.tsv                      # List of samples (histological sections)
+|
+├── README.md
+├── dataset_description.json
+├── participants.tsv
+├── participants.json
+├── samples.tsv
+├── samples.json
 └── sub-01/
-    └── micr/
-        ├── sub-01_sample-sXXXX_chunk-YYY_BRIGHTFIELD.tif       # Raw brightfield image
-        ├── sub-01_sample-sXXXX_chunk-YYY_BRIGHTFIELD.json      # Metadata for the image
-        ├── sub-01_sample-sXXXX_chunk-YYY_mask-lamina.png       # Manual lamina mask
-        ├── sub-01_sample-sXXXX_chunk-YYY_mask-lamina.json      # Metadata for the mask
-        ├── sub-01_sample-sXXXX_chunk-YYY_cellstats.tsv         # Layer-wise cell statistics
-        ├── sub-01_sample-sXXXX_chunk-YYY_cellstats.json        # Metadata for cellstats
-        ├── sub-01_sample-sXXXX_chunk-YYY_cells.tsv             # Per-cell position and size
-        ├── sub-01_sample-sXXXX_chunk-YYY_cells.json            # Metadata for cells.tsv
+|    └── micr/
+|        ├── sub-01_sample-s3467_chunk-001_BRIGHTFIELD.tif
+|        ├── sub-01_sample-s3467_chunk-001_BRIGHTFIELD.json
+|        └── (weitere Dateien und Chunks)
+├── derivatives/
+   └── CellSegmentation/
+   |    ├── dataset_description.json
+   |    └── sub-01/
+   |        └── micr/
+   |            ├── sub-01_sample-s3467_chunk-001_desc-cellstats.tsv
+   |            ├── sub-01_sample-s3467_chunk-001_desc-cellstats.json
+   |            ├── sub-01_sample-s3467_chunk-001_desc-cells.tsv
+   |            └── sub-01_sample-s3467_chunk-001_desc-cells.json
+   |            └── (weitere Dateien und Chunks)
+   └── Thickness/
+       ├── dataset_description.json
+       └── sub-01/
+           └── micr/
+               ├── sub-01_sample-s3467_chunk-001_desc-lamina_mask.png
+               ├── sub-01_sample-s3467_chunk-001_desc-lamina_mask.json
+               └── (weitere Dateien und Chunks)
+
 ```
 
 ---
@@ -34,36 +51,35 @@ my_dataset/
 
 Each file follows the format:
 ```
-sub-<participant>_sample-<section>_chunk-<patch>_<suffix>.<ext>
+
+sub-<participant>\_sample-<section>*chunk-<patch>*<suffix>.<ext>
+
 ```
 
 Example:
 ```
-sub-01_sample-s3467_chunk-001_BRIGHTFIELD.tif
-```
+
+sub-01\_sample-s3467\_chunk-001\_BRIGHTFIELD.tif
+
+````
 
 ---
 
 ## Summary
 
-- **Participant:** `sub-01` = BigBrain individual
-- **Samples:** sXXXX = histological sections
-- **Chunks:** image patches within each sample
-- **Total chunks:** 940
+- **Participant:** `sub-01` = BigBrain individual  
+- **Samples:** sXXXX = histological sections  
+- **Chunks:** image patches within each sample  
+- **Total chunks:** 940  
 
-
-
-
+---
 
 # 📘 Dataset Description — `dataset_description.json`
-
-This file provides general metadata about the dataset, including authorship, software used, and references.
 
 ```json
 {
   "Name": "Layer-specific distributions of segmented cells in different cytoarchitectonic regions of BigBrain iso cortex",
   "BIDSVersion": "1.9.0",
-  "DatasetType": "raw",
   "License": "CC-BY-4.0",
   "Authors": [
     "Timo Dickscheid",
@@ -74,28 +90,6 @@ This file provides general metadata about the dataset, including authorship, sof
     "Katrin Amunts"
   ],
   "HowToAcknowledge": "Please cite our forthcoming publication (placeholder for own publication).",
-  "GeneratedBy": [
-    {
-      "Name": "Timo's Software Pipeline",
-      "Version": "1.x"
-    },
-    {
-      "Name": "PatchExtractor",
-      "Version": "1.2"
-    },
-    {
-      "Name": "CellDetection (CPN)",
-      "Version": "1.0",
-      "Description": "Automated cell segmentation using Contour Proposal Networks (CPN)",
-      "CodeURL": "https://github.com/FZJ-INM1-BDA/celldetection"
-    },
-    {
-      "Name": "SIIBRA",
-      "Version": "0.4.0",
-      "Description": "Spatially Interactive Atlas Browser for the Human Brain",
-      "CodeURL": "https://siibra.readthedocs.io/"
-    }
-  ],
   "ReferencesAndLinks": [
     "https://bigbrainproject.org/",
     "https://julich-brain-atlas.de/",
@@ -104,25 +98,45 @@ This file provides general metadata about the dataset, including authorship, sof
     "https://siibra.readthedocs.io/"
   ]
 }
-```
+````
 
 ---
-
 
 ## 🧬 Participants
 
 ### `participants.tsv`
-| Column         | Description                |
-|----------------|----------------------------|
-| participant_id | BIDS participant label     |
-| species        | Species name               |
-| sex            | Biological sex             |
-| age            | Age in years (if known)    |
+
+| Column          | Description             |
+| --------------- | ----------------------- |
+| participant\_id | BIDS participant label  |
+| species         | Species name            |
+| sex             | Biological sex          |
+| age             | Age in years (if known) |
 
 Example:
+
 ```
 participant_id	species	    sex	  age
 sub-01	        Homo sapiens	male	65
+```
+
+### `participants.json`
+
+```json
+{
+  "participant_id": {
+    "Description": "BIDS participant label, e.g., sub-01"
+  },
+  "species": {
+    "Description": "Species of the organism, here Homo sapiens"
+  },
+  "sex": {
+    "Description": "Biological sex of the participant"
+  },
+  "age": {
+    "Description": "Age in years (if known)"
+  }
+}
 ```
 
 ---
@@ -130,102 +144,233 @@ sub-01	        Homo sapiens	male	65
 ## 🧪 Samples
 
 ### `samples.tsv`
-Each sample corresponds to a histological section from the BigBrain brain.
 
-| Column         | Description                    |
-|----------------|--------------------------------|
-| sample_id      | Unique ID for the histological section |
-| participant_id | Related participant            |
-| sample_type    | Biological material            |
-| sample_staining| Staining technique             |
+| Column          | Description                            |
+| --------------- | -------------------------------------- |
+| sample\_id      | Unique ID for the histological section |
+| participant\_id | Related participant                    |
+| sample\_type    | Biological material                    |
 
 Example:
+
 ```
-sample_id	participant_id	sample_type	sample_staining
-s3467	    sub-01	        brain tissue	Merker silver staining
+sample_id	participant_id	sample_type
+s3467	    sub-01	        brain tissue
+```
+
+### `samples.json`
+
+```json
+{
+  "sample_id": {
+    "Description": "ID of the sample (matches sample-<label> in filename)"
+  },
+  "participant_id": {
+    "Description": "ID of the participant (matches sub-<label> in filename)"
+  },
+  "sample_type": {
+    "Description": "Type of biological material, e.g., 'brain tissue'"
+  }
+}
 ```
 
 ---
 
 ## 🧠 Image Metadata — `*_BRIGHTFIELD.json`
 
-This file describes the microscopy image, including spatial resolution and coordinate mapping to both BigBrain and MNI reference spaces.
+```json
+{
+  "Manufacturer": "Huron Digital Pathology",
+  "ManufacturersModelName": "TissueScope LE120 Slide Scanner",
+  "InstitutionName": "Forschungszentrum Jülich",
+  "PixelSize": [1.0, 1.0],
+  "PixelSizeUnits": "um",
+  "Magnification": 10,
+  "ImageAcquisitionProtocol": "https://github.com/FZJ-INM1-BDA/PatchExtractor",
+  "OtherAcquisitionParameters": "NumericalAperture=0.75; BitDepth=8",
+  "BodyPart": "BRAIN",
+  "BodyPartDetails": "iso cortex",
+  "BodyPartDetailsOntology": "https://www.ebi.ac.uk/ols/ontologies/uberon",
+  "SampleEnvironment": "ex vivo",
+  "SampleEmbedding": "Paraffin",
+  "SampleFixation": "To be confirmed",
+  "SampleStaining": ["Merker silver staining"],
+  "SliceThickness": 20,
+  "SampleExtractionProtocol": "To be confirmed",
+  "SampleExtractionInstitution": "Forschungszentrum Jülich",
+  "ChunkTransformationMatrix": [
+    [1, 0, 0, 0],
+    [0, 1, 0, 0],
+    [0, 0, 1, 0],
+    [0, 0, 0, 1]
+  ],
+  "ChunkTransformationMatrixAxis": ["X", "Y", "Z", "1"]
+}
+```
+
+---
+
+## Derivatives Folder and Files
+
+2 derivatives included Cellsegmentation data and laminar thickness data
+
+## derivatives CellSegmentation
+
+### `derivatives/CellSegmentation/dataset_description.json`
 
 ```json
 {
-  "ImagingModality": "Brightfield",
-  "FileFormat": "TIFF",
-  "BitDepth": 8,
-  "PixelSize": [
-    1.0,
-    1.0
-  ],
-  "PixelSizeUnits": "µm",
-  "SliceThickness": 20,
-  "SliceThicknessUnits": "µm",
-  "ObjectiveMagnification": 20,
-  "NumericalAperture": 0.8,
-  "Sample": "s3467",
-  "StainingMethod": "Merker silver staining",
-  "BigBrainReferenceSpace": {
-    "Coordinates": [
-      123.4,
-      67.8,
-      3467.0
-    ],
-    "CoordinateDescription": "Patch coordinates in µm within the native 3D histological BigBrain volume. The z-coordinate corresponds to the slice index × slice thickness.",
-    "Reference": "BigBrain (Amunts et al., Science 2013)"
+  "Name": "Cell-Segmentation-Pipeline for BigBrain Microscopy Data",
+  "BIDSVersion": "1.9.0",
+  "PipelineDescription": {
+    "Name": "CPN CellSeg",
+    "Version": "1.0",
+    "CodeURL": "https://github.com/FZJ-INM1-BDA/celldetection",
+    "Description": "Automatic cell segmentation using Contour Proposal Networks (CPN) and subsequent layer-specific cell statistics."
   },
-  "MNI152ReferenceSpace": {
-    "Coordinates": [
-      12.1,
-      -48.3,
-      27.9
-    ],
-    "CoordinateDescription": "Spatial coordinates after nonlinear registration to MNI152NLin2009cAsym template (ICBM 2009c Nonlinear Asymmetrical).",
-    "Reference": "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin2009cAsym",
-    "AtlasAnnotation": [
-      {
-        "AtlasName": "Julich-Brain",
-        "AtlasVersion": "3.1",
-        "Label": "Area 44",
-        "Probability": 0.85
-      },
-      {
-        "AtlasName": "Julich-Brain",
-        "AtlasVersion": "3.1",
-        "Label": "Area 45",
-        "Probability": 0.1
-      }
-    ]
-  },
-  "SoftwareUsed": [
+  "HowToAcknowledge": "Upschulte et al., MedIA 2022 – Cell Segmentation via CPN",
+  "SourceDatasets": [
     {
-      "Name": "Timo's Software Pipeline",
-      "Version": "1.x"
-    },
-    {
-      "Name": "PatchExtractor",
-      "Version": "1.2"
+      "Name": "Layer-specific distributions of BigBrain iso cortex (Raw)",
+      "URL": "https://bigbrainproject.org/"
     }
   ]
 }
 ```
 
+#### `sub-01_sample-s3467_chunk-001_desc-cellstats.tsv`
 
+```
+layer	cell_count	cell_size_mean_um2	cell_size_std_um2
+I	    38	        89.4	            12.1
+II	    54	        75.2	            10.5
+III	    82	        66.7	            9.8
+IV	    41	        73.5	            11.2
+V	    59	        80.3	            10.7
+VI	    47	        95.1	            12.5
+```
 
-## 🧱 Laminar Annotation Metadata — `*_mask-lamina.json`
-
-This file describes the manual annotation of cortical laminae, including thickness statistics and annotation method.
+#### `sub-01_sample-s3467_chunk-001_desc-cellstats.json`
 
 ```json
 {
-  "Description": "Manual annotation of cortical laminae in this patch, performed by trained neuroanatomists using MicroDraw. Each layer was delineated following a standardized protocol and reviewed independently (4-eye principle).",
+  "Description": "Layer-wise cell statistics (count and area metrics) for this patch, generated from CPN segmentation.",
+  "TableColumns": {
+    "layer": {
+      "Description": "Cortical layer (I through VI)",
+      "Levels": ["I", "II", "III", "IV", "V", "VI"]
+    },
+    "cell_count": {
+      "Description": "Number of detected cells in this layer",
+      "Units": "count",
+      "DataType": "integer"
+    },
+    "cell_size_mean_um2": {
+      "Description": "Mean cell area in square micrometers",
+      "Units": "um2",
+      "DataType": "float"
+    },
+    "cell_size_std_um2": {
+      "Description": "Standard deviation of cell area in square micrometers",
+      "Units": "um2",
+      "DataType": "float"
+    }
+  },
+  "GeneratedBy": {
+    "Name": "CPN CellSeg v1.0",
+    "CodeURL": "https://github.com/FZJ-INM1-BDA/celldetection",
+    "Version": "1.0"
+  }
+}
+```
+
+#### `sub-01_sample-s3467_chunk-001_desc-cells.tsv`
+
+```
+cell_id	x_um	y_um	area_um2	layer
+1	    12.1	34.5	87.3	I
+2	    15.8	36.2	92.1	I
+3	    22.4	40.8	78.5	II
+...
+```
+
+#### `sub-01_sample-s3467_chunk-001_desc-cells.json`
+
+```json
+{
+  "Description": "Single-cell information (position, area, layer membership) for all detected cells in this patch.",
+  "TableColumns": {
+    "cell_id": {
+      "Description": "Unique cell identifier",
+      "DataType": "integer"
+    },
+    "x_um": {
+      "Description": "X-coordinate of the cell centroid in micrometers relative to the patch",
+      "Units": "um",
+      "DataType": "float"
+    },
+    "y_um": {
+      "Description": "Y-coordinate of the cell centroid in micrometers relative to the patch",
+      "Units": "um",
+      "DataType": "float"
+    },
+    "area_um2": {
+      "Description": "Cell area in square micrometers",
+      "Units": "um2",
+      "DataType": "float"
+    },
+    "layer": {
+      "Description": "Cortical layer in which the cell resides (I–VI)",
+      "Levels": ["I", "II", "III", "IV", "V", "VI"]
+    }
+  },
+  "GeneratedBy": {
+    "Name": "CPN CellSeg v1.0",
+    "CodeURL": "https://github.com/FZJ-INM1-BDA/celldetection",
+    "Version": "1.0"
+  }
+}
+```
+
+---
+## derivatives Thickness
+
+### `derivatives/Thickness/dataset_description.json`
+
+```json
+{
+  "Name": "Lamina Thickness Derivative for BigBrain Microscopy Data",
+  "BIDSVersion": "1.9.0",
+  "PipelineDescription": {
+    "Name": "ManualLaminaAnnotation",
+    "Version": "1.0",
+    "CodeURL": "https://microdraw.pasteur.fr",
+    "Description": "Manual annotation of cortical laminae and calculation of thickness statistics."
+  },
+  "HowToAcknowledge": "Amunts et al., BigBrain 2013",
+  "SourceDatasets": [
+    {
+      "Name": "Layer-specific distributions of BigBrain iso cortex (Raw)",
+      "URL": "https://bigbrainproject.org/"
+    }
+  ]
+}
+```
+
+#### `sub-01_sample-s3467_chunk-001_desc-lamina_mask.png`
+
+*(PNG mask of the manual lamina annotation)*
+
+#### `sub-01_sample-s3467_chunk-001_desc-lamina_mask.json`
+
+```json
+{
+  "Description": "Manual annotation of cortical laminae for this patch, created by neuroanatomical experts.",
   "FileFormat": "PNG",
   "DataType": "uint8",
   "BitDepth": 8,
-  "CoordinateSpace": "same as image",
-  "LabelMap": {
+  "CoordinateSpace": "pixel",
+  "LaminaLabels": {
     "1": {
       "Label": "Layer I",
       "MeanThickness_um": 95.2,
@@ -258,14 +403,13 @@ This file describes the manual annotation of cortical laminae, including thickne
     }
   },
   "Units": {
-    "MeanThickness_um": "\u00b5m",
-    "ThicknessStd_um": "\u00b5m"
+    "MeanThickness_um": "um",
+    "ThicknessStd_um": "um"
   },
   "AnnotationMethod": {
     "Type": "manual",
     "Annotators": "Trained neuroanatomists",
-    "Validation": "4-eye principle (independent second expert)",
-    "Protocol": "Standardized protocol for laminar delineation in BigBrain histology",
+    "Validation": "4-eye principle (second independent review)",
     "Software": {
       "Name": "MicroDraw",
       "Version": "1.0",
@@ -275,66 +419,5 @@ This file describes the manual annotation of cortical laminae, including thickne
 }
 ```
 
----
-
-## 📈 Layer-wise Cell Statistics — `*_cellstats.tsv`
-
-This file provides a summary of cell counts and mean sizes per lamina within one patch.
-
-```tsv
-layer	cell_count	cell_size_mean_um2	cell_size_std_um2
-I	38	89.4	12.1
-II	54	75.2	10.5
-
 ```
-
----
-
-## 🧮 Layer-wise Statistics Metadata — `*_cellstats.json`
-
-Describes how the cell statistics were generated and includes reference to the automated segmentation algorithm used.
-
-```json
-{
-  hier soll die datei ausgegeben werden!
-}
 ```
-
----
-
-## 🔬 Per-Cell Table (Sample) — `*_cells.tsv` (First 10 rows)
-
-Each row corresponds to one detected cell, with centroid position, area, and layer label.
-
-```tsv
-cell_id	x_um	y_um	area_um2	layer
-1	12.1	34.5	87.3	I
-2	15.8	36.2	92.1	I
-
-```
-
----
-
-## 🧾 Per-Cell Metadata — `*_cells.json`
-
-Describes the content and method of the per-cell data table.
-
-```json
-{
-  hier soll die dateio ausgebeben werden
-}
-```
-
----
-
-
-
----
-
-## 📚 References
-
-- Amunts et al., Science 2013 – BigBrain
-- Upschulte et al., MedIA 2022 – Cell Segmentation via CPN
-- https://bigbrainproject.org/
-- https://julich-brain-atlas.de/
-- https://siibra.readthedocs.io/
