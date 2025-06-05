@@ -81,7 +81,7 @@ Example:
 
 sub-01\_sample-s3467\_chunk-001\_BRIGHTFIELD.tif
 
-````
+```
 
 ---
 
@@ -224,7 +224,7 @@ s3467	    sub-01	        brain tissue
     [0, 0, 1, 0],
     [0, 0, 0, 1]
   ],
-  "ChunkTransformationMatrixAxis": ["X", "Y", "Z", "1"]
+  "ChunkTransformationMatrixAxis": ["X", "Y", "Z"]
 }
 ```
 
@@ -437,7 +437,4 @@ cell_id	x_um	y_um	area_um2	layer
     }
   }
 }
-```
-
-```
 ```
