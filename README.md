@@ -219,6 +219,7 @@ s3467	    sub-01	        tissue
   "SliceThickness": 20,
   "SampleExtractionProtocol": "To be confirmed",
   "SampleExtractionInstitution": "Structural and Functional Organisation of the Brain (INM-1)",
+  "SpatialReference": "BigBrain histology",
   "ChunkTransformationMatrix": [
     [1, 0, 0, 0],
     [0, 1, 0, 0],
