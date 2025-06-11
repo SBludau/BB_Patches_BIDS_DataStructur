@@ -87,10 +87,12 @@ sub-01\_sample-s3467\_chunk-001\_BRIGHTFIELD.tif
 
 ## Summary
 
-- **Participant:** `sub-01` = BigBrain individual  
-- **Samples:** sXXXX = histological sections  
-- **Chunks:** image patches within each sample  
-- **Total chunks:** 940  
+![Übersicht des Projekts](./overview.png "Projekt-Overview")
+
+- **Participant:** `sub-01` = BigBrain, one individual reconstructed brain
+- **Samples:** sXXXX = histological sections. 7404 in total.
+- **Chunks:** image patches within each sample. Some samples do have multiple chunks some do have non.
+- **Total chunks:** 940, will be extended in the future
 
 ---
 
