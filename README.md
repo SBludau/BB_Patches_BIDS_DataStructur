@@ -19,11 +19,11 @@ Microscopy
 Some Warnings about missing keys. Easy to include!
 
 
-# 📊 Data Descriptor: Layer-specific distributions of segmented cells in different cytoarchitectonic regions of BigBrain iso cortex
+# 📊 Data Descriptor: Layer-specific distributions of segmented cells at more than 900 localizations of BigBrain isocortex
 
 ## Description
 
-This dataset contains high-resolution histological image patches from the BigBrain project. Each patch represents a section of human cortex stained with the Merker method and manually annotated for cortical laminae. Cells were segmented automatically using a contour-based deep learning model.
+This dataset contains high-resolution (1µm) histological image patches from the BigBrain project. Each patch represents a selected part of a section of human cortex stained with the Merker method and manually annotated for cortical laminae. Cells were segmented automatically using a contour-based deep learning model. BigBrain coordinates of all analyzed patches are included as well as transformed MNI152 coordinates and Julich Brain Atlas labels. 
 
 Planed to follow BIDS (Brain Imaging Data Structure) standard with the Microscopy extension (BEP031).
 
@@ -98,7 +98,7 @@ sub-01\_sample-s3467\_chunk-001\_BRIGHTFIELD.tif
 
 ```json
 {
-  "Name": "Layer-specific distributions of segmented cells in different cytoarchitectonic regions of BigBrain iso cortex",
+  "Name": "Layer-specific distributions of segmented cells in different cytoarchitectonic regions of BigBrain isocortex",
   "BIDSVersion": "1.9.0",
   "License": "CC-BY-4.0",
   "Authors": [
@@ -109,11 +109,10 @@ sub-01\_sample-s3467\_chunk-001\_BRIGHTFIELD.tif
     "Eric Upschulte",
     "Katrin Amunts"
   ],
-  "HowToAcknowledge": "Please cite our forthcoming publication (placeholder for own publication).",
+  "HowToAcknowledge": "Placeholder for own publication ;-) ",
   "ReferencesAndLinks": [
     "https://bigbrainproject.org/",
     "https://julich-brain-atlas.de/",
-    "https://www.sciencedirect.com/science/article/pii/S136184152200024X",
     "https://github.com/FZJ-INM1-BDA/celldetection",
     "https://siibra.readthedocs.io/"
   ]
@@ -131,7 +130,7 @@ sub-01\_sample-s3467\_chunk-001\_BRIGHTFIELD.tif
 | participant\_id | BIDS participant label  |
 | species         | Species name            |
 | sex             | Biological sex          |
-| age             | Age in years (if known) |
+| age             | Age in years            |
 
 Example:
 
@@ -154,7 +153,7 @@ sub-01	        Homo sapiens	male	65
     "Description": "Biological sex of the participant"
   },
   "age": {
-    "Description": "Age in years (if known)"
+    "Description": "Age in years"
   }
 }
 ```
@@ -165,17 +164,17 @@ sub-01	        Homo sapiens	male	65
 
 ### `samples.tsv`
 
-| Column          | Description                            |
-| --------------- | -------------------------------------- |
-| sample\_id      | Unique ID for the histological section |
-| participant\_id | Related participant                    |
-| sample\_type    | Biological material                    |
+| Column          | Description                                             |
+| --------------- | --------------------------------------------------------|
+| sample\_id      | Unique ID for the histological section (section number) |
+| participant\_id | Related participant                                     |
+| sample\_type    | Biological material                                     |
 
 Example:
 
 ```
 sample_id	participant_id	sample_type
-s3467	    sub-01	        brain tissue
+s3467	    sub-01	        tissue
 ```
 
 ### `samples.json`
@@ -183,13 +182,13 @@ s3467	    sub-01	        brain tissue
 ```json
 {
   "sample_id": {
-    "Description": "ID of the sample (matches sample-<label> in filename)"
+    "Description": "ID of the sample. Section number. (matches sample-<label> in filename)"
   },
   "participant_id": {
     "Description": "ID of the participant (matches sub-<label> in filename)"
   },
   "sample_type": {
-    "Description": "Type of biological material, e.g., 'brain tissue'"
+    "Description": "Type of biological material, e.g., 'tissue'"
   }
 }
 ```
@@ -202,14 +201,14 @@ s3467	    sub-01	        brain tissue
 {
   "Manufacturer": "Huron Digital Pathology",
   "ManufacturersModelName": "TissueScope LE120 Slide Scanner",
-  "InstitutionName": "Forschungszentrum Jülich",
+  "InstitutionName": "Forschungszentrum Jülich GmbH, Institute of Neurosciences and Medicine, Structural and Functional Organisation of the Brain (INM-1)",
   "PixelSize": [1.0, 1.0],
   "PixelSizeUnits": "um",
   "Magnification": 10,
-  "ImageAcquisitionProtocol": "https://github.com/FZJ-INM1-BDA/PatchExtractor",
+  "ImageAcquisitionProtocol": "To be confirmed",
   "OtherAcquisitionParameters": "NumericalAperture=0.75; BitDepth=8",
   "BodyPart": "BRAIN",
-  "BodyPartDetails": "iso cortex",
+  "BodyPartDetails": "isocortex",
   "BodyPartDetailsOntology": "https://www.ebi.ac.uk/ols/ontologies/uberon",
   "SampleEnvironment": "ex vivo",
   "SampleEmbedding": "Paraffin",
@@ -217,7 +216,7 @@ s3467	    sub-01	        brain tissue
   "SampleStaining": ["Merker silver staining"],
   "SliceThickness": 20,
   "SampleExtractionProtocol": "To be confirmed",
-  "SampleExtractionInstitution": "Forschungszentrum Jülich",
+  "SampleExtractionInstitution": "Structural and Functional Organisation of the Brain (INM-1)",
   "ChunkTransformationMatrix": [
     [1, 0, 0, 0],
     [0, 1, 0, 0],
@@ -251,7 +250,7 @@ s3467	    sub-01	        brain tissue
   "HowToAcknowledge": "Upschulte et al., MedIA 2022 – Cell Segmentation via CPN",
   "SourceDatasets": [
     {
-      "Name": "Layer-specific distributions of BigBrain iso cortex (Raw)",
+      "Name": "Layer-specific distributions of BigBrain isocortex (Raw)",
       "URL": "https://bigbrainproject.org/"
     }
   ]
@@ -347,7 +346,7 @@ cell_id	x_um	y_um	area_um2	layer
   "GeneratedBy": {
     "Name": "CPN CellSeg v1.0",
     "CodeURL": "https://github.com/FZJ-INM1-BDA/celldetection",
-    "Version": "1.0"
+    "Version": "To be confirmed"
   }
 }
 ```
@@ -367,10 +366,10 @@ cell_id	x_um	y_um	area_um2	layer
     "CodeURL": "https://microdraw.pasteur.fr",
     "Description": "Manual annotation of cortical laminae and calculation of thickness statistics."
   },
-  "HowToAcknowledge": "Amunts et al., BigBrain 2013",
+  "HowToAcknowledge": "To be confirmed",
   "SourceDatasets": [
     {
-      "Name": "Layer-specific distributions of BigBrain iso cortex (Raw)",
+      "Name": "Layer-specific distributions of BigBrain isocortex (Raw)",
       "URL": "https://bigbrainproject.org/"
     }
   ]
